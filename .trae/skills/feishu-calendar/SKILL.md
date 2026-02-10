@@ -1,11 +1,11 @@
 ---
-name: "feishu-assistant"
-description: "飞书开发助手，专注于日程(Calendar)和任务(Task)管理。当用户需要创建、查询飞书日程或任务，或进行飞书 API 开发时调用。"
+name: "feishu-calendar"
+description: "飞书日历助手，专注于飞书日程(Calendar)管理。提供创建、查询、修改、删除日程的便捷工具。"
 ---
 
-# Feishu Assistant (飞书开发助手)
+# Feishu Calendar (飞书日历助手)
 
-此 Skill 旨在辅助开发飞书相关应用，特别是日程（Calendar）和任务（Task）管理功能。
+此 Skill 旨在辅助开发飞书日历应用，提供了一套便捷的日程（Calendar）管理工具。
 本 Skill 提供了一个封装好的 Python 客户端 `feishu_client.py`，位于 Skill 根目录下。
 
 ## 核心功能
@@ -13,7 +13,7 @@ description: "飞书开发助手，专注于日程(Calendar)和任务(Task)管�
 1.  **自动初始化与配置管理**
     -   支持通过命令行交互输入 `App ID`, `App Secret`, `手机号`。
     -   自动通过手机号获取 `User ID (Open ID)`。
-    -   配置默认保存至 `~/.feishu_assistant_config.json`。
+    -   配置默认保存至 `~/.feishu_calendar_config.json`。
 2.  **智能日程管理 (Calendar)**
     -   **默认参与人**：若未指定参与人，默认将日程发送给当前配置的用户（自己）。
     -   **智能内容生成**：若未提供详细描述，根据会议主题自动生成默认描述。
@@ -23,19 +23,19 @@ description: "飞书开发助手，专注于日程(Calendar)和任务(Task)管�
 
 ### 1. 引入客户端
 
-推荐直接使用 Skill 提供的 `FeishuAssistant` 类，而不是从头编写 HTTP 请求。
+推荐直接使用 Skill 提供的 `FeishuCalendar` 类，而不是从头编写 HTTP 请求。
 
 ```python
 import sys
 import os
 
-# 假设当前脚本在项目根目录，Skill 位于 .trae/skills/feishu-assistant
+# 假设当前脚本在项目根目录，Skill 位于 .trae/skills/feishu-calendar
 # 实际使用时请根据路径调整
-sys.path.append(os.path.abspath(".trae/skills/feishu-assistant"))
+sys.path.append(os.path.abspath(".trae/skills/feishu-calendar"))
 
-from feishu_client import FeishuAssistant
+from feishu_client import FeishuCalendar
 
-assistant = FeishuAssistant()
+assistant = FeishuCalendar()
 ```
 
 ### 2. 初始化配置

@@ -12,11 +12,11 @@ from datetime import datetime
 # 获取当前脚本所在目录并添加到 sys.path
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(current_dir)
-from feishu_client import FeishuAssistant
+from feishu_client import FeishuCalendar
 
 def create_event(summary, date_str=None, time_str=None, duration=60, description=None):
     """创建日程事件"""
-    assistant = FeishuAssistant()
+    assistant = FeishuCalendar()
     
     if not assistant.app_id:
         print("❌ 未配置，请先运行: python3 feishu_client.py")

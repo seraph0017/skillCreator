@@ -3,9 +3,9 @@ import os
 import time
 import requests
 
-CONFIG_FILE = os.path.expanduser("~/.feishu_assistant_config.json")
+CONFIG_FILE = os.path.expanduser("~/.feishu_calendar_config.json")
 
-class FeishuAssistant:
+class FeishuCalendar:
     def __init__(self):
         self.config = self._load_config()
         self.app_id = self.config.get("app_id")
@@ -35,7 +35,7 @@ class FeishuAssistant:
         """
         初始化配置：输入 App ID, App Secret, 手机号
         """
-        print("Initializing Feishu Assistant...")
+        print("Initializing Feishu Calendar...")
         app_id = input("Enter App ID: ").strip()
         app_secret = input("Enter App Secret: ").strip()
         phone = input("Enter Phone Number: ").strip()
@@ -225,8 +225,8 @@ class FeishuAssistant:
 
 if __name__ == "__main__":
     # 简单的命令行交互用于测试/初始化
-    assistant = FeishuAssistant()
+    assistant = FeishuCalendar()
     if not assistant.app_id:
         assistant.initialize()
     else:
-        print("Feishu Assistant is configured.")
+        print("Feishu Calendar is configured.")
