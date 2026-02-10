@@ -71,6 +71,44 @@ description = "本周主要议题：\n1. 进度同步\n2. 风险评估"
 assistant.create_event(summary, start_time, end_time, attendees=attendees, description=description)
 ```
 
+### 4. 命令行工具 (`create_meeting.py`)
+
+本 Skill 提供了一个通用的命令行工具 `create_meeting.py`，用于快速创建日程。
+
+**使用方法**：
+```bash
+python3 create_meeting.py "会议主题" [选项]
+```
+
+**参数选项**：
+- `--day DAY`: 偏移天数（默认1=明天）
+- `--hour HOUR`: 小时（24小时制，默认9）
+- `--minute MINUTE`: 分钟（默认0）
+- `--duration MIN`: 会议时长（分钟，默认60）
+- `--desc DESC`: 会议描述
+
+**使用示例**：
+
+1.  **简单创建（明天9点）**:
+    ```bash
+    python3 create_meeting.py "团队会议"
+    ```
+
+2.  **指定时间（明天下午2点，30分钟）**:
+    ```bash
+    python3 create_meeting.py "和客户通话" --hour 14 --duration 30
+    ```
+
+3.  **今天创建（立即会议）**:
+    ```bash
+    python3 create_meeting.py "紧急会议" --day 0 --hour 16
+    ```
+
+4.  **带描述的会议**:
+    ```bash
+    python3 create_meeting.py "项目评审" --desc "本周项目进展评审和下周计划"
+    ```
+
 ## 客户端代码说明 (`feishu_client.py`)
 
 该客户端封装了以下逻辑：
