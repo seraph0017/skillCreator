@@ -71,43 +71,54 @@ description = "本周主要议题：\n1. 进度同步\n2. 风险评估"
 assistant.create_event(summary, start_time, end_time, attendees=attendees, description=description)
 ```
 
-### 4. 命令行工具 (`create_meeting.py`)
+### 4. 命令行工具集
 
-本 Skill 提供了一个通用的命令行工具 `create_meeting.py`，用于快速创建日程。
+本 Skill 提供了一套完整的命令行工具，用于管理飞书日程。
 
-**使用方法**：
+#### 4.1 创建日程 (`create.py`)
 ```bash
-python3 create_meeting.py "会议主题" [选项]
+python3 create.py "会议主题" [日期 YYYY-MM-DD] [时间 HH:MM] [时长分钟] [描述]
+```
+示例：
+```bash
+python3 create.py "团队会议" 2026-02-11 09:00 60 "讨论项目进展"
 ```
 
-**参数选项**：
-- `--day DAY`: 偏移天数（默认1=明天）
-- `--hour HOUR`: 小时（24小时制，默认9）
-- `--minute MINUTE`: 分钟（默认0）
-- `--duration MIN`: 会议时长（分钟，默认60）
-- `--desc DESC`: 会议描述
+#### 4.2 列出日程 (`list.py`)
+列出未来 N 天的日程（默认 7 天）。
+```bash
+python3 list.py [天数]
+```
+示例：
+```bash
+python3 list.py 7
+```
 
-**使用示例**：
+#### 4.3 修改日程 (`modify.py`)
+修改指定日程的主题、时间、时长或描述。
+```bash
+python3 modify.py EVENT_ID [选项]
+```
+选项：
+- `--summary "新主题"`
+- `--time "YYYY-MM-DD HH:MM"`
+- `--duration 分钟`
+- `--desc "新描述"`
 
-1.  **简单创建（明天9点）**:
-    ```bash
-    python3 create_meeting.py "团队会议"
-    ```
+示例：
+```bash
+python3 modify.py f905157c-962b-426f-bf03-65a7d4bbe8d3_0 --summary "新主题" --time "2026-02-11 14:00"
+```
 
-2.  **指定时间（明天下午2点，30分钟）**:
-    ```bash
-    python3 create_meeting.py "和客户通话" --hour 14 --duration 30
-    ```
-
-3.  **今天创建（立即会议）**:
-    ```bash
-    python3 create_meeting.py "紧急会议" --day 0 --hour 16
-    ```
-
-4.  **带描述的会议**:
-    ```bash
-    python3 create_meeting.py "项目评审" --desc "本周项目进展评审和下周计划"
-    ```
+#### 4.4 删除日程 (`delete.py`)
+删除指定 ID 的日程。
+```bash
+python3 delete.py EVENT_ID
+```
+示例：
+```bash
+python3 delete.py f905157c-962b-426f-bf03-65a7d4bbe8d3_0
+```
 
 ## 客户端代码说明 (`feishu_client.py`)
 
