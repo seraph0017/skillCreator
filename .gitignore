@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables and config
+.env
+.feishu_assistant_config.json
+*.json
+
+# OS specific
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp

@@ -9,7 +9,7 @@ The skills are located in `.trae/skills/`.
 ### Available Skills
 
 - **[openclaw](.trae/skills/openclaw/SKILL.md)**: 专用于 OpenClaw 项目的开发助手。
-- **[lark-assistant](.trae/skills/lark-assistant/SKILL.md)**: 飞书(Lark)开发助手，专注于日程和任务管理。
+- **[feishu-assistant](.trae/skills/feishu-assistant/SKILL.md)**: 飞书开发助手，专注于日程和任务管理。支持自动初始化配置、默认发日程给自己等特性。
 
 ## Usage
 
