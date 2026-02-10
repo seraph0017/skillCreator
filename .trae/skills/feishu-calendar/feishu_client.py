@@ -205,11 +205,15 @@ class FeishuCalendar:
         
         attendees_payload = []
         for uid in attendee_ids:
-            attendees_payload.append({
-                "type": "user",
-                "user_id_type": "open_id",
-                "user_id": uid
-            })
+            if uid:  # Ensure uid is not None or empty
+                attendees_payload.append({
+                    "type": "user",
+                    "user_id_type": "open_id",
+                    "user_id": uid
+                })
+        
+        if not attendees_payload:
+            return
             
         payload = {
             "attendees": attendees_payload
