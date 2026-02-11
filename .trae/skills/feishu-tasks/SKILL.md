@@ -90,3 +90,53 @@ assistant.complete_task(task_guid)
 -   **Token 管理**：自动获取并缓存 `tenant_access_token`。
 -   **配置持久化**：JSON 文件存储凭证。
 -   **API 封装**：对接飞书 Task V2 API。
+
+## 命令行工具集
+
+本 Skill 提供了一套完整的命令行工具，用于管理飞书任务。
+
+### 1. 创建任务 (`create.py`)
+```bash
+python3 create.py "任务标题" [--desc "描述"] [--due "YYYY-MM-DD HH:MM"]
+```
+示例：
+```bash
+python3 create.py "修复登录Bug" --desc "影响用户登录，需紧急修复" --due "2026-02-12 18:00"
+```
+
+### 2. 列出任务 (`list.py`)
+列出当前用户的任务。
+**注意**：使用 `tenant_access_token` (默认模式) 可能无法获取用户任务列表，通常需要 `user_access_token`。
+```bash
+python3 list.py [数量] [--type created]
+```
+示例：
+```bash
+python3 list.py 10 --type created
+```
+
+### 3. 修改任务 (`modify.py`)
+修改任务信息或标记完成。
+```bash
+python3 modify.py TASK_GUID [选项]
+```
+选项：
+- `--summary "新标题"`
+- `--desc "新描述"`
+- `--due "YYYY-MM-DD HH:MM"`
+- `--complete` (标记完成)
+
+示例：
+```bash
+python3 modify.py xxxx-xxxx-xxxx --summary "修复登录Bug (已处理)" --complete
+```
+
+### 4. 删除任务 (`delete.py`)
+删除指定任务。
+```bash
+python3 delete.py TASK_GUID
+```
+示例：
+```bash
+python3 delete.py xxxx-xxxx-xxxx
+```

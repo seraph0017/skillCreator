@@ -151,9 +151,10 @@ class FeishuTask:
         response = requests.post(url, headers=headers, json=payload)
         return response.json()
 
-    def list_tasks(self, page_size=20, page_token=None):
+    def list_tasks(self, page_size=20, page_token=None, task_list_type=None):
         """
         列出任务 (默认列出当前用户负责的任务)
+        :param task_list_type: 任务类型，如 "created", "assigned" 等
         """
         if not self.app_id:
             print("Configuration missing. Please run initialize() first.")
@@ -165,10 +166,14 @@ class FeishuTask:
             "Authorization": f"Bearer {token}",
         }
         params = {
-            "page_size": page_size
+            "page_size": page_size,
+            "user_id_type": "open_id"
         }
         if page_token:
             params["page_token"] = page_token
+            
+        if task_list_type:
+            params["type"] = task_list_type
             
         response = requests.get(url, headers=headers, params=params)
         return response.json()
@@ -213,6 +218,50 @@ class FeishuTask:
         
         response = requests.patch(url, headers=headers, json=payload)
         return response.json()
+
+    def update_task(self, task_guid, summary=None, description=None, due_timestamp=None):
+        """
+        更新任务信息
+        """
+        if not self.app_id:
+            return
+            
+        token = self._get_tenant_access_token()
+        url = f"https://open.feishu.cn/open-apis/task/v2/tasks/{task_guid}"
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json; charset=utf-8"
+        }
+        
+        task_data = {}
+        update_fields = []
+        
+        if summary:
+            task_data["summary"] = summary
+            update_fields.append("summary")
+            
+        if description:
+            task_data["description"] = description
+            update_fields.append("description")
+            
+        if due_timestamp:
+            task_data["due"] = {
+                "timestamp": str(due_timestamp),
+                "is_all_day": False
+            }
+            update_fields.append("due")
+            
+        if not update_fields:
+            return None
+            
+        payload = {
+            "task": task_data,
+            "update_fields": update_fields
+        }
+        
+        response = requests.patch(url, headers=headers, json=payload)
+        return response.json()
+
 
     def delete_task(self, task_guid):
         """
