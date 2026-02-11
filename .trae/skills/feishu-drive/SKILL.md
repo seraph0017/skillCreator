@@ -1,6 +1,6 @@
 ---
 name: "feishu-drive"
-description: "飞书云文档(Drive)助手。提供文档(Docs)、电子表格(Sheets)、文件上传/下载、文件夹管理等功能。当用户需要管理飞书云文档或文件时调用。"
+description: "飞书云文档(Drive)助手。提供文档(Docs)、电子表格(Sheets)、文件上传/下载、文件夹管理、内容写入及权限管理等功能。"
 ---
 
 # Feishu Drive (飞书云文档助手)
@@ -19,6 +19,10 @@ description: "飞书云文档(Drive)助手。提供文档(Docs)、电子表格(S
     -   **查询**：列出云空间文件、搜索文件。
     -   **下载**：下载云空间文件。
     -   **删除**：删除云空间文件。
+    -   **修改**：重命名或移动文件。
+3.  **高级功能**
+    -   **内容写入**：向 Docx 文档追加文本内容。
+    -   **权限管理**：添加协作者并精细控制权限 (阅读/编辑/管理)。
 
 ## 前置要求 (权限配置)
 
@@ -69,7 +73,7 @@ python3 create.py bitable "任务追踪"
 
 # 创建文件夹
 python3 create.py folder "项目资料"
-```
+
 # 在指定文件夹下创建 (需提供 folder_token)
 python3 create.py doc "子文档" --folder_token "fldxxxxxx"
 ```
@@ -111,3 +115,37 @@ python3 delete.py FOLDER_TOKEN --type folder
 python3 delete.py SHEET_TOKEN --type sheet
 python3 delete.py DOC_TOKEN --type docx
 ```
+
+#### 2.6 写入文档内容 (`write_doc.py`)
+向已存在的 Docx 文档追加文本内容。
+```bash
+python3 write_doc.py DOC_TOKEN "要写入的文本内容"
+```
+
+#### 2.7 权限管理 (`share.py`)
+为文档、表格或文件夹添加协作者。
+```bash
+# 默认授予管理权限 (full_access) 给指定 OpenID 用户
+python3 share.py TOKEN MEMBER_ID
+
+# 指定权限、类型和用户ID类型
+# 支持角色: view (阅读), edit (编辑), full_access (管理)
+# 支持资源类型: docx, sheet, bitable, folder, file
+python3 share.py TOKEN EMAIL_ADDRESS --role edit --type sheet --member_type email
+```
+
+## 客户端 API 参考
+
+`FeishuDrive` 类提供了以下核心方法：
+
+- `create_folder(name, parent_token)`
+- `create_doc(name, parent_token)`
+- `create_sheet(name, parent_token)`
+- `create_bitable(name, parent_token)`
+- `upload_file(file_path, parent_token)`
+- `list_files(folder_token)`
+- `delete_file(file_token, type)`
+- `rename_file(file_token, new_name, type)`
+- `move_file(file_token, folder_token, type)`
+- `add_docx_content(document_id, content)`: 向文档追加文本块
+- `add_member_permission(token, member_id, member_type, role, type)`: 添加协作者
