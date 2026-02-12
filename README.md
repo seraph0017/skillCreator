@@ -13,6 +13,7 @@ The skills are located in `.trae/skills/`.
 - **[feishu-tasks](.trae/skills/feishu-tasks/SKILL.md)**: 飞书任务助手，专注于任务管理。支持创建、查询、完成任务等功能。
 - **[feishu-drive](.trae/skills/feishu-drive/SKILL.md)**: 飞书云文档助手，支持文档/表格/文件夹的创建、管理、上传、内容写入及权限共享。
 - **[feishu-cards](.trae/skills/feishu-cards/SKILL.md)**: 飞书消息卡片助手，支持构建和发送富文本 (Markdown) 卡片消息。
+- **[volcengine-vision](.trae/skills/volcengine-vision/SKILL.md)**: 火山引擎视觉模型助手，支持调用 Doubao Vision 模型进行图片内容理解。
 
 ## Usage
 
