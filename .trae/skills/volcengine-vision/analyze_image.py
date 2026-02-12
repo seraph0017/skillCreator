@@ -31,7 +31,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="使用火山引擎 Doubao Vision 模型分析图片")
     parser.add_argument("image_url", help="图片的 URL 地址")
     parser.add_argument("--prompt", default="图片主要讲了什么?", help="对图片的提问 (默认: '图片主要讲了什么?')")
-    parser.add_argument("--model", default="doubao-1-5-vision-pro-32k-250115", help="使用的模型版本")
+    parser.add_argument("--model", default="doubao-seed-1-6-vision-250815", help="使用的模型版本")
     
     args = parser.parse_args()
     

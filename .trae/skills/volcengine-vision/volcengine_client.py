@@ -4,7 +4,7 @@ import requests
 
 CONFIG_FILE = os.path.expanduser("~/.volcengine_config.json")
 LOCAL_CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".volcengine_config.json")
-DEFAULT_MODEL = "doubao-1-5-vision-pro-32k-250115"
+DEFAULT_MODEL = "doubao-seed-1-6-vision-250815"
 API_ENDPOINT = "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
 
 class VolcengineVision:
@@ -57,7 +57,7 @@ class VolcengineVision:
         调用火山引擎视觉模型分析图片
         :param image_url: 图片 URL
         :param prompt: 提示词 (默认: "图片主要讲了什么?")
-        :param model: 模型版本 (默认: doubao-1-5-vision-pro-32k-250115)
+        :param model: 模型版本 (默认: doubao-seed-1-6-vision-250815)
         :return: 模型返回的文本描述
         """
         if not self.api_key:

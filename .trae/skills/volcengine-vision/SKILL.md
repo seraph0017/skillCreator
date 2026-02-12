@@ -1,6 +1,6 @@
 ---
 name: "volcengine-vision"
-description: "火山引擎(Volcengine)视觉模型助手。调用 Doubao-1.5-vision-pro 模型进行图片内容理解和描述。"
+description: "火山引擎(Volcengine)视觉模型助手。调用 Doubao-seed-1.6-vision 模型进行图片内容理解和描述。"
 ---
 
 # Volcengine Vision (火山引擎视觉助手)
@@ -15,7 +15,7 @@ description: "火山引擎(Volcengine)视觉模型助手。调用 Doubao-1.5-vis
     -   首次运行时会提示输入 `ARK_API_KEY`。
 2.  **图片理解与描述**
     -   **图片分析**: 输入图片 URL 和提示词 (Prompt)，获取模型对图片的详细描述。
-    -   **模型支持**: 默认使用 `doubao-1-5-vision-pro-32k-250115` 模型。
+    -   **模型支持**: 默认使用 `doubao-seed-1-6-vision-250815` 模型。
 
 ## 前置要求
 
@@ -51,17 +51,17 @@ python3 analyze_image.py "https://ark-project.tos-cn-beijing.volces.com/images/v
 python3 analyze_image.py "https://ark-project.tos-cn-beijing.volces.com/images/view.jpeg" --prompt "请详细描述这张图片中的颜色和物体"
 
 # 指定模型 (如果需要更换模型版本)
-python3 analyze_image.py "https://example.com/image.jpg" --model "doubao-1-5-vision-pro-32k-250115"
+python3 analyze_image.py "https://example.com/image.jpg" --model "doubao-seed-1-6-vision-250815"
 ```
 
 ## 客户端 API 参考
 
 `VolcengineVision` 类提供了以下核心方法：
 
-- `analyze_image(image_url, prompt="图片主要讲了什么?", model="doubao-1-5-vision-pro-32k-250115")`: 分析图片内容
+- `analyze_image(image_url, prompt="图片主要讲了什么?", model="doubao-seed-1-6-vision-250815")`: 分析图片内容
   - `image_url`: 图片的公网 URL 地址
   - `prompt`: 对模型的提问 (默认: "图片主要讲了什么?")
-  - `model`: 使用的模型版本 (默认: `doubao-1-5-vision-pro-32k-250115`)
+  - `model`: 使用的模型版本 (默认: `doubao-seed-1-6-vision-250815`)
 
 ## API 调用示例 (Python)
 
